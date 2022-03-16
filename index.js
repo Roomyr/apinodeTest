@@ -17,7 +17,7 @@ const route = require('express').Router();
 // ****************** GET ALL CARDS
 route.get('/', function (req, res) {
     // res.send('get route');
-    console.log('all cards');
+    // console.log('all cards');
     let sql = 'select * from card';
     connection.query(sql, (err, rows, fields) => {
         if (err) throw err;
@@ -30,7 +30,7 @@ route.get('/', function (req, res) {
 // ****************** GET ONE CARD
 route.get('/:id', function (req, res) {
     const { id } = req.params;
-    let sql = 'select * from card where idcard = ?';
+    let sql = 'select * from card where id = ?';
     connection.query(sql, [id], (err, rows, fields) => {
         if (err) throw err;
         else {
@@ -54,7 +54,7 @@ route.post('/', (req, res) => {
 // ****************** DELETE A CARD
 route.delete('/:id', (req, res) => {
     const { id } = req.params;
-    sql = `delete from card where idcard = ${id}`;
+    sql = `delete from card where id = ${id}`;
     connection.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
@@ -73,7 +73,7 @@ route.put('/:id', (req, res) => {
     assignees = '${assignees}',
     rate = ${rate},
     postedBy = '${postedBy}'
-    where idcard = ${id}`;
+    where id = ${id}`;
     connection.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
